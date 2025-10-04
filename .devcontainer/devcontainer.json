@@ -1,0 +1,24 @@
+{
+  "name": "Flutter Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "..",
+    "args": {
+      "USERNAME": "${localEnv:USER}"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode-remote.remote-containers",
+        "Dart-Code.flutter",
+        "Dart-Code.dart-code"
+      ]
+    }
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "runArgs": ["--network=host"],
+  "postCreateCommand": "sudo chown -R ${remoteUser}:${remoteUser} /workspaces && . \"$HOME/.asdf/asdf.sh\" && yes | flutter doctor --android-licenses && flutter doctor",
+  "remoteUser": "${localEnv:USER}"
+}
