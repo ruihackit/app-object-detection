@@ -1,4 +1,4 @@
-# my_app
+# app-object-detection
 
 A new Flutter project.
 
